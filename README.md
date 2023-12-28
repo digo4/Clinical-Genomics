@@ -62,3 +62,7 @@ Address ethical and legal considerations related to genomic data, including pati
 - **Follow-Up and Long-Term Monitoring:**
 
 Establish a follow-up plan for long-term monitoring of patients based on genomic findings. Periodically reassess and update clinical recommendations as new information becomes available.
+
+### A step-by-step guide to Clinical Genomics analysis:
+
+
