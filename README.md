@@ -27,30 +27,38 @@ Annotate identified variants with information about their functional impact, pop
 
 Apply filtering criteria to prioritize variants based on their relevance to the patient's phenotype and the suspected disease. Consider factors like variant type, predicted pathogenicity, and allele frequency.
 
-Interpretation and Clinical Reporting:
+- **Interpretation and Clinical Reporting:**
 
 Review and interpret the filtered variants in the context of the patient's clinical history and phenotype. Determine the clinical significance of each variant. Generate a comprehensive clinical report.
-Clinical Validation:
+
+- **Clinical Validation:**
 
 Validate clinically relevant variants using orthogonal methods, such as Sanger sequencing or other established techniques. Confirm the presence of pathogenic variants.
-Variant Prioritization:
+
+- **Variant Prioritization:**
 
 Prioritize variants based on their clinical significance, potential impact on disease, and relevance to treatment options. Identify actionable variants that may guide therapeutic interventions.
-Clinical Decision Support:
+
+- **Clinical Decision Support:**
 
 Provide clinical decision support to healthcare providers based on the genomic findings. Offer recommendations for patient management, including potential therapeutic options and surveillance strategies.
-Genetic Counseling:
+
+- **Genetic Counseling:**
 
 Engage genetic counselors to communicate genomic results to patients and their families. Provide information about the implications of identified variants, recurrence risks, and potential preventive measures.
-Integration with Electronic Health Records (EHR):
+
+- **Integration with Electronic Health Records (EHR):**
 
 Integrate genomic data and clinical interpretations into the patient's electronic health record (EHR) to facilitate ongoing healthcare management and collaboration among healthcare providers.
-Continuous Learning and Research:
+
+- **Continuous Learning and Research:**
 
 Stay informed about the latest genomic research and clinical guidelines. Continuously update the interpretation pipeline based on evolving scientific knowledge.
-Ethical and Legal Considerations:
+
+- **Ethical and Legal Considerations:**
 
 Address ethical and legal considerations related to genomic data, including patient consent, privacy, and adherence to regulatory requirements such as the Health Insurance Portability and Accountability Act (HIPAA).
-Follow-Up and Long-Term Monitoring:
+
+- **Follow-Up and Long-Term Monitoring:**
 
 Establish a follow-up plan for long-term monitoring of patients based on genomic findings. Periodically reassess and update clinical recommendations as new information becomes available.
