@@ -63,6 +63,19 @@ Address ethical and legal considerations related to genomic data, including pati
 
 Establish a follow-up plan for long-term monitoring of patients based on genomic findings. Periodically reassess and update clinical recommendations as new information becomes available.
 
-### A step-by-step guide to Clinical Genomics analysis:
+## A step-by-step guide to Clinical Genomics analysis:
+1. Pre-processing reads:
+2. Aligning reads to reference genome
+3. Alignment Post-Processing
+4. Base Quality score recalibration (optional)
+5. Variant Calling
+6. Variant Filtering
+   - 6.1 Splitting variants into SNPs and INDELs
+   - 6.2 Variant Quality Score Recalibration
+   - 6.3 Hard Filtering Variants
+7. Variant Annotation
+8. Clinical Interpretation
+   
+
 
 
