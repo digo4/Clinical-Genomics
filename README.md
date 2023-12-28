@@ -80,16 +80,17 @@ fastqc -o fastq_bt gatk_demo1.fastq.gz gatk_demo2.fastq.gz
 
 ```
 
-3. **Aligning reads to reference genome:**
-4. Alignment Post-Processing
-5. Base Quality score recalibration (optional)
-6. Variant Calling
-7. Variant Filtering
+2. **Aligning reads to reference genome:**
+Aligning sequencing reads to a reference genome is a crucial step in many bioinformatics workflows, including variant calling and downstream genomic analyses. The Burrows-Wheeler Aligner (BWA) is a popular tool for aligning short DNA sequences to a large reference genome efficiently.    
+5. Alignment Post-Processing
+6. Base Quality score recalibration (optional)
+7. Variant Calling
+8. Variant Filtering
    - 6.1 Splitting variants into SNPs and INDELs
    - 6.2 Variant Quality Score Recalibration
    - 6.3 Hard Filtering Variants
-8. Variant Annotation
-9. Clinical Interpretation
+9. Variant Annotation
+10. Clinical Interpretation
    
 
 
