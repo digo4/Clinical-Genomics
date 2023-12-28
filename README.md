@@ -65,17 +65,25 @@ Establish a follow-up plan for long-term monitoring of patients based on genomic
 
 ## A step-by-step guide to Clinical Genomics analysis:
 1. **Pre-processing reads:** 
-Pre-processing the reads involves checking the quality (Phred-scores) using tools like FASTQC (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) or MultiQC (https://github.com/MultiQC/MultiQC). After that, we need to remove adapter contamination and trim quality reads using either one of the following tools : fastp (https://github.com/OpenGene/fastp?tab=readme-ov-file), cutadapt, TrimGalore or Trimmomatic.
-2. **Aligning reads to reference genome:**
-3. Alignment Post-Processing
-4. Base Quality score recalibration (optional)
-5. Variant Calling
-6. Variant Filtering
+Pre-processing the reads involves checking the quality (Phred-scores) using tools like [FASTQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) or [MultiQC](https://github.com/MultiQC/MultiQC). After that, we need to remove adapter contamination and trim quality reads using either one of the following tools : [fastp](https://github.com/OpenGene/fastp?tab=readme-ov-file), [cutadapt](https://cutadapt.readthedocs.io/en/stable/), [TrimGalore](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/) or [Trimmomatic](/http://www.usadellab.org/cms/?page=trimmomatic).
+
+```
+mkdir fastq_bt
+#Running FASTQC
+fastqc -o fastq_bt gatk_demo1.fastq.gz gatk_demo2.fastq.gz
+
+```
+
+3. **Aligning reads to reference genome:**
+4. Alignment Post-Processing
+5. Base Quality score recalibration (optional)
+6. Variant Calling
+7. Variant Filtering
    - 6.1 Splitting variants into SNPs and INDELs
    - 6.2 Variant Quality Score Recalibration
    - 6.3 Hard Filtering Variants
-7. Variant Annotation
-8. Clinical Interpretation
+8. Variant Annotation
+9. Clinical Interpretation
    
 
 
