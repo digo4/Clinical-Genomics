@@ -64,7 +64,11 @@ Address ethical and legal considerations related to genomic data, including pati
 Establish a follow-up plan for long-term monitoring of patients based on genomic findings. Periodically reassess and update clinical recommendations as new information becomes available.
 
 ## A step-by-step guide to Clinical Genomics analysis:
-1. Pre-processing reads:
+1. **Pre-processing reads:** 
+   Pre-processing the reads involves checking the quality (Phred-scores) using tools like FASTQC (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) or MultiQC (especially 
+
+
+
 2. Aligning reads to reference genome
 3. Alignment Post-Processing
 4. Base Quality score recalibration (optional)
