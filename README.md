@@ -65,10 +65,8 @@ Establish a follow-up plan for long-term monitoring of patients based on genomic
 
 ## A step-by-step guide to Clinical Genomics analysis:
 1. **Pre-processing reads:** 
-Pre-processing the reads involves checking the quality (Phred-scores) using tools like FASTQC (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) or [MultiQC]https://github.com/MultiQC/MultiQC (especially for multiple samples, it's recommended to use MultiQC, to summarise the QC reports of all the samples into one report.
-
-
-2. Aligning reads to reference genome
+Pre-processing the reads involves checking the quality (Phred-scores) using tools like FASTQC (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) or [MultiQC (https://github.com/MultiQC/MultiQC). 
+2. **Aligning reads to reference genome:**
 3. Alignment Post-Processing
 4. Base Quality score recalibration (optional)
 5. Variant Calling
