@@ -1,3 +1,7 @@
+fastqc -o fastq_bt gatk_demo1.fastq.gz gatk_demo2.fastq.gz
+fastp -i gatk_demo1.fastq.gz -I gatk_demo2.fastq.gz -o gatk_demo1_trimmed.fastq.gz -O gatk_demo2_trimmed.fastq.gz \
+	-R gatk_demo -h gatk_demo.html -j gatk_demo.json --detect_adapter_for_pe
+fastqc -o fastq_at gatk_demo1_trimmed.fastq.gz gatk_demo2_trimmed.fastq.gz
 bwa mem ref.fa gatk_demo1_trimmed.fastq.gz gatk_demo2_trimmed.fastq.gz > demo.sam
 docker run -v /home/mediomix/Desktop/Clinical_Genomics_Demo:/gatk/data -it broadinstitute/gatk:4.4.0.0
 gatk AddOrReplaceReadGroups -I demo.sam -O demo.bam -RGID SRR21388960 -RGLB SRR21388960 -RGPL ILLUMINA -RGPU unit1 -RGSM SRR21388960
