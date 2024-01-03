@@ -12,13 +12,27 @@ Clinical genomics analysis refers to the application of genomic technologies and
 Pre-processing the reads involves checking the quality (Phred-scores) using tools like [FASTQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) or [MultiQC](https://github.com/MultiQC/MultiQC). After that, we need to remove adapter contamination and trim quality reads using either one of the following tools : [fastp](https://github.com/OpenGene/fastp?tab=readme-ov-file), [cutadapt](https://cutadapt.readthedocs.io/en/stable/), [TrimGalore](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/) or [Trimmomatic](/http://www.usadellab.org/cms/?page=trimmomatic).
 
 The following code can be used to check the quality of reads obtained from the sequencer.
+
+### 1. Running FastQC
+
 ```
-mkdir fastq_bt
+mkdir fastq_bt  # bt stands for before trimming
 #Running FASTQC
 fastqc -o fastq_bt gatk_demo1.fastq.gz gatk_demo2.fastq.gz
 
 ```
+### 2. Running FASTP
+```
+fastp -i gatk_demo1.fastq.gz -I gatk_demo2.fastq.gz -o gatk_demo1_trimmed.fastq.gz -O gatk_demo2_trimmed.fastq.gz \
+       -R gatk_demo -h gatk_demo.html -j gatk_demo.json --detect_adapter_for_pe
 
+```
+```
+mkdir fastq_at  # at stands for after trimming
+#Running FASTQC
+fastqc -o fastq_bt gatk_demo1.fastq.gz gatk_demo2.fastq.gz
+
+```
 2. **Aligning reads to reference genome:**
 Aligning sequencing reads to a reference genome is a crucial step in many bioinformatics workflows, including variant calling and downstream genomic analyses. The Burrows-Wheeler Aligner (BWA) is a popular tool for aligning short DNA sequences to a large reference genome efficiently.
   
