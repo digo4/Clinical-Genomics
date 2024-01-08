@@ -52,18 +52,18 @@ bwa mem Homo_sapiens_assembly38.fasta
 ```
 
 ### 3. Alignment Post-Processing:
-After aligning your sequencing reads to a reference genome using BWA, there are several post-processing steps you may want to perform to analyze and manipulate the alignment results. Here are some common post-processing steps:
-       - 3.1 Adding one or more read groups to your SAM file:
-       - 3.2 SAM to BAM conversion:
-       - 3.3 Sorting BAM file:
-       - 3.4 Marking (and optionally deleting) duplicates:
+After aligning your sequencing reads to a reference genome using BWA, there are several post-processing steps you may want to perform to analyze and manipulate the alignment results. For this purpose, we will be utilising the [Picard](https://broadinstitute.github.io/picard/) tool. Picard is a collection of command-line tools for manipulating high-throughput sequencing (HTS) data files, such as SAM and BAM files. These tools are developed by the Broad Institute and are widely used in genomics and bioinformatics workflows. Picard tools are often employed for quality control, data preprocessing, and various manipulations of sequence data. Here are some common post-processing steps:
+- **3.1 Adding one or more read groups to your SAM file:**
+- **3.2 SAM to BAM conversion:**
+- **3.3 Sorting BAM file:**
+- **3.4 Marking (and optionally deleting) duplicates:**
 
 ### 4. Base Quality score recalibration (not mandatory, but highly recommended) :
 ### 5. Variant Calling:
 ### 6. Variant Filtering:
-       - 6.1 Splitting variants into SNPs and INDELs
-       - 6.2 Variant Quality Score Recalibration-
-       - 6.3 Hard Filtering Variants-
+- **6.1 Splitting variants into SNPs and INDELs:**
+- **6.2 Variant Quality Score Recalibration:**
+- **6.3 Hard Filtering Variants:**
 ### 7. Variant Annotation:
 ### 8. Clinical Interpretation:
    
