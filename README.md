@@ -54,6 +54,17 @@ bwa mem Homo_sapiens_assembly38.fasta
 ### 3. Alignment Post-Processing:
 After aligning your sequencing reads to a reference genome using BWA, there are several post-processing steps you may want to perform to analyze and manipulate the alignment results. For this purpose, we will be utilising the [Picard](https://broadinstitute.github.io/picard/) tool. Picard is a collection of command-line tools for manipulating high-throughput sequencing (HTS) data files, such as SAM and BAM files. These tools are developed by the Broad Institute and are widely used in genomics and bioinformatics workflows. Picard tools are often employed for quality control, data preprocessing, and various manipulations of sequence data. Here are some common post-processing steps:
 - **3.1 Adding one or more read groups to your SAM file:** The AddOrReplaceReadGroups tool in Picard is used to add or replace read group information in a SAM or BAM file. This is important for downstream applications that require proper grouping and identification of reads, especially when dealing with data from multiple sequencing libraries or samples. Even though for this demo data purpose, we have a single sample bam file, still this step is absolutely mandatory for the GATK pipeline! The GATK Pipeline requires at least one ReadGroup id to be specified in the  Here's an example of how to use the AddOrReplaceReadGroups tool:
+  ```
+  java -jar picard.jar AddOrReplaceReadGroups \
+  I=input.bam \
+  O=output.bam \
+  RGID=ID123 \
+  RGLB=library1 \
+  RGPL=illumina \
+  RGPU=unit1 \
+  RGSM=sample1
+
+  ```
 - **3.2 SAM to BAM conversion:**
 - **3.3 Sorting BAM file:**
 - **3.4 Marking (and optionally deleting) duplicates:**
