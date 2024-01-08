@@ -70,7 +70,7 @@ After aligning your sequencing reads to a reference genome using BWA, there are 
 
   ```
 
-  Note: For those of you who are running [GATK in Docker](https://gatk.broadinstitute.org/hc/en-us/articles/360035889991--How-to-Run-GATK-in-a-Docker-container), you dont need to install picard separately. 
+  Note: For those of you who are running [GATK in Docker](https://gatk.broadinstitute.org/hc/en-us/articles/360035889991--How-to-Run-GATK-in-a-Docker-container), you dont need to install picard separately. All the functionalities of picard are already present within GATK, check out the script (clinical_genomics_demo.sh) for clarity. However, those of you who will have downloaded the GATK 
 - **3.2 SAM to BAM conversion:**
 - **3.3 Sorting BAM file:**
 - **3.4 Marking (and optionally deleting) duplicates:**
