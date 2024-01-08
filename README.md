@@ -8,7 +8,7 @@
 Clinical genomics analysis refers to the application of genomic technologies and computational methods to understand the genetic basis of diseases and inform clinical decision-making. It involves the analysis of genomic data obtained from patients to identify genetic variations, mutations, and other molecular features that may contribute to disease development or progression. The goal is to use this information to guide diagnosis, treatment decisions, and personalized medicine approaches.
 
 ## A step-by-step guide to Clinical Genomics analysis:
-### 1. **Pre-processing reads:** 
+### 1. Pre-processing reads: 
 Pre-processing the reads involves checking the quality (Phred-scores) using tools like [FASTQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) or [MultiQC](https://github.com/MultiQC/MultiQC). After that, we need to remove adapter contamination and trim quality reads using either one of the following tools : [fastp](https://github.com/OpenGene/fastp?tab=readme-ov-file), [cutadapt](https://cutadapt.readthedocs.io/en/stable/), [TrimGalore](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/) or [Trimmomatic](/http://www.usadellab.org/cms/?page=trimmomatic).
 
 The following code can be used to check the quality of reads obtained from the sequencer.
@@ -40,14 +40,14 @@ Aligning sequencing reads to a reference genome is a crucial step in many bioinf
 
   
 ### 3. Alignment Post-Processing:
-5. **Base Quality score recalibration (not mandatory, but highly recommended)**
-6. **Variant Calling:**
-7. **Variant Filtering:**
-   - 6.1 **Splitting variants into SNPs and INDELs-**
-   - 6.2 **Variant Quality Score Recalibration-**
-   - 6.3 **Hard Filtering Variants-**
-8. **Variant Annotation:**
-9. **Clinical Interpretation:**
+### 4. Base Quality score recalibration (not mandatory, but highly recommended) :
+### 5. Variant Calling:
+### 6. Variant Filtering:
+   - **6.1 Splitting variants into SNPs and INDELs-**
+   - **6.2 Variant Quality Score Recalibration-**
+   - **6.3 Hard Filtering Variants-**
+### 7. Variant Annotation:
+### 8. Clinical Interpretation:
    
 
 
