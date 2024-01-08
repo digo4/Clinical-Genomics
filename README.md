@@ -8,6 +8,7 @@
 Clinical genomics analysis refers to the application of genomic technologies and computational methods to understand the genetic basis of diseases and inform clinical decision-making. It involves the analysis of genomic data obtained from patients to identify genetic variations, mutations, and other molecular features that may contribute to disease development or progression. The goal is to use this information to guide diagnosis, treatment decisions, and personalized medicine approaches.
 
 ## A step-by-step guide to Clinical Genomics analysis:
+Before we begin, please have all the files from the [GATK Resource Bundle](https://console.cloud.google.com/storage/browser/genomics-public-data/resources/broad/hg38/v0;tab=objects?prefix=&forceOnObjectsSortingFiltering=false) and keep all the files downloaded in one folder (let's name the folder resource). We can create a folder using the `mkdir` command.
 ### 1. Pre-processing reads: 
 Pre-processing the reads involves checking the quality (Phred-scores) using tools like [FASTQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) or [MultiQC](https://github.com/MultiQC/MultiQC). After that, we need to remove adapter contamination and trim quality reads using either one of the following tools : [fastp](https://github.com/OpenGene/fastp?tab=readme-ov-file), [cutadapt](https://cutadapt.readthedocs.io/en/stable/), [TrimGalore](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/) or [Trimmomatic](/http://www.usadellab.org/cms/?page=trimmomatic).
 
@@ -36,10 +37,11 @@ fastqc -o fastq_bt gatk_demo1.fastq.gz gatk_demo2.fastq.gz
 
 ```
 ### 2. Aligning reads to reference genome:
-Aligning sequencing reads to a reference genome is a crucial step in many bioinformatics workflows, including variant calling and downstream genomic analyses. The Burrows-Wheeler Aligner (BWA) is a popular tool for aligning short DNA sequences to a large reference genome efficiently.
+Aligning sequencing reads to a reference genome is a crucial step in many bioinformatics workflows, including variant calling and downstream genomic analyses. The Burrows-Wheeler Aligner (BWA) is a popular tool for aligning short DNA sequences to a large reference genome efficiently. Before perfroming the alignment, we first need to index the reference genome.
 
   
 ### 3. Alignment Post-Processing:
+
 ### 4. Base Quality score recalibration (not mandatory, but highly recommended) :
 ### 5. Variant Calling:
 ### 6. Variant Filtering:
