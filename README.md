@@ -60,13 +60,13 @@ After aligning your sequencing reads to a reference genome using BWA, there are 
 - **3.1 Adding one or more read groups to your SAM file:** The [AddOrReplaceReadGroups](https://gatk.broadinstitute.org/hc/en-us/articles/360037226472-AddOrReplaceReadGroups-Picard-) tool in Picard is used to add or replace read group information in a SAM or BAM file. This is important for downstream applications that require proper grouping and identification of reads, especially when dealing with data from multiple sequencing libraries or samples. Even though for this demo data purpose, we have a single sample bam file, still this step is absolutely mandatory for the GATK pipeline! The GATK Pipeline requires at least one ReadGroup id to be specified in the  Here's an example of how to use the AddOrReplaceReadGroups tool:
   ```
   java -jar picard.jar AddOrReplaceReadGroups \
-  I=input.bam \
-  O=output.bam \
-  RGID=ID123 \
-  RGLB=library1 \
-  RGPL=illumina \
-  RGPU=unit1 \
-  RGSM=sample1
+         I=input.bam \
+         O=output.bam \
+         RGID=ID123 \
+         RGLB=library1 \
+         RGPL=illumina \
+         RGPU=unit1 \
+         RGSM=sample1
 
   ```
 
@@ -74,19 +74,25 @@ After aligning your sequencing reads to a reference genome using BWA, there are 
 - **3.2 SAM to BAM conversion:** The [SamFormatConverter](https://gatk.broadinstitute.org/hc/en-us/articles/360037058992-SamFormatConverter-Picard-) tool in Picard can be used to convert a SAM file to BAM format. Here's an example of how to use SamFormatConverter for this purpose:
   ```
   java -jar picard.jar SamFormatConverter \
-  I=input.sam \
-  O=output.bam
+         I=input.sam \
+         O=output.bam
 
   ```
 - **3.3 Sorting BAM file:** The [SortSam](https://gatk.broadinstitute.org/hc/en-us/articles/360037594291-SortSam-Picard-) tool in Picard is used to sort a SAM or BAM file by coordinate order. Sorting is a necessary step for downstream analyses and visualization tools that require data to be ordered by genomic coordinates. Here's an example of how to use SortSam:
   ```
   java -jar picard.jar SortSam \
-  I=input.bam \
-  O=sorted_output.bam \
-  SORT_ORDER=coordinate
+         I=input.bam \
+         O=sorted_output.bam \
+         SORT_ORDER=coordinate
 
   ```
-- **3.4 Marking (and optionally deleting) duplicates:**
+- **3.4 Marking (and optionally deleting) duplicates:** In Picard, the [MarkDuplicates](https://gatk.broadinstitute.org/hc/en-us/articles/360037052812-MarkDuplicates-Picard-) tool is used to identify and mark duplicate reads in a SAM or BAM file. Marking duplicates is a common step in the preprocessing of sequencing data, especially when dealing with PCR-amplified libraries. Here's an example of how to use MarkDuplicates:
+  ```
+  java -jar picard.jar MarkDuplicates \
+      I=input.bam \
+      O=marked_duplicates.bam \
+      M=marked_dup_metrics.txt
+  ```
 
 ### 4. Base Quality score recalibration (not mandatory, but highly recommended) :
 ### 5. Variant Calling:
