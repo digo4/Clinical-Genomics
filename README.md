@@ -47,16 +47,23 @@ bwa index Homo_sapiens_assembly38.fasta gatk_demo1_trimmed.fastq.gz gatk_demo2_t
 Note: Since the Homo spaiens reference genome is very huge in size (3GB), the indexing process can take anywhere between 45min to 2hrs, depending on your system configurations. Alternatively, if you have downloaded all the files in the GATK resource bundle folder, then the respective index files from BWA are already downloaded, and you do not need to index your reference genome again.
 
 #### Alignment to the indexed reference genome
-bwa mem Homo_sapiens_assembly38.fasta 
+```
+bwa mem Homo_sapiens_assembly38.fasta
+```
 
 ### 3. Alignment Post-Processing:
+After aligning your sequencing reads to a reference genome using BWA, there are several post-processing steps you may want to perform to analyze and manipulate the alignment results. Here are some common post-processing steps:
+       - **3.1 Adding one or more read groups to your SAM file:**
+       - **3.2 SAM to BAM conversion:**
+       - **3.3 Sorting BAM file:**
+       - **3.4 Marking (and optionally deleting) duplicates:**
 
 ### 4. Base Quality score recalibration (not mandatory, but highly recommended) :
 ### 5. Variant Calling:
 ### 6. Variant Filtering:
-   - **6.1 Splitting variants into SNPs and INDELs-**
-   - **6.2 Variant Quality Score Recalibration-**
-   - **6.3 Hard Filtering Variants-**
+       - 6.1 Splitting variants into SNPs and INDELs-
+       - 6.2 Variant Quality Score Recalibration-
+       - 6.3 Hard Filtering Variants-
 ### 7. Variant Annotation:
 ### 8. Clinical Interpretation:
    
