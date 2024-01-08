@@ -57,7 +57,7 @@ bwa mem Homo_sapiens_assembly38.fasta
 
 ### 3. Alignment Post-Processing:
 After aligning your sequencing reads to a reference genome using BWA, there are several post-processing steps you may want to perform to analyze and manipulate the alignment results. For this purpose, we will be utilising the [Picard](https://broadinstitute.github.io/picard/) tool. Picard is a collection of command-line tools for manipulating high-throughput sequencing (HTS) data files, such as SAM and BAM files. These tools are developed by the Broad Institute and are widely used in genomics and bioinformatics workflows. Picard tools are often employed for quality control, data preprocessing, and various manipulations of sequence data. Here are some common post-processing steps:
-- **3.1 Adding one or more read groups to your SAM file:** The AddOrReplaceReadGroups tool in Picard is used to add or replace read group information in a SAM or BAM file. This is important for downstream applications that require proper grouping and identification of reads, especially when dealing with data from multiple sequencing libraries or samples. Even though for this demo data purpose, we have a single sample bam file, still this step is absolutely mandatory for the GATK pipeline! The GATK Pipeline requires at least one ReadGroup id to be specified in the  Here's an example of how to use the AddOrReplaceReadGroups tool:
+- **3.1 Adding one or more read groups to your SAM file:** The [AddOrReplaceReadGroups](https://gatk.broadinstitute.org/hc/en-us/articles/360037226472-AddOrReplaceReadGroups-Picard-) tool in Picard is used to add or replace read group information in a SAM or BAM file. This is important for downstream applications that require proper grouping and identification of reads, especially when dealing with data from multiple sequencing libraries or samples. Even though for this demo data purpose, we have a single sample bam file, still this step is absolutely mandatory for the GATK pipeline! The GATK Pipeline requires at least one ReadGroup id to be specified in the  Here's an example of how to use the AddOrReplaceReadGroups tool:
   ```
   java -jar picard.jar AddOrReplaceReadGroups \
   I=input.bam \
@@ -71,8 +71,21 @@ After aligning your sequencing reads to a reference genome using BWA, there are 
   ```
 
   Note: For those of you who are running [GATK in Docker](https://gatk.broadinstitute.org/hc/en-us/articles/360035889991--How-to-Run-GATK-in-a-Docker-container), you dont need to install picard separately. All the functionalities of picard are already present within GATK, check out the script (clinical_genomics_demo.sh) for clarity. However, those of you who will have downloaded the GATK https://github.com/broadinstitute/gatk/releases/download/4.4.0.0/gatk-4.4.0.0.zip. Make sure you have Java (v.>= 17) installed, and then you can execute the Picard command as shown in the example. Additionally, specify the full path to the picard.jar file in the command, depending on your system configuratio
-- **3.2 SAM to BAM conversion:**
-- **3.3 Sorting BAM file:**
+- **3.2 SAM to BAM conversion:** The [SamFormatConverter](https://gatk.broadinstitute.org/hc/en-us/articles/360037058992-SamFormatConverter-Picard-) tool in Picard can be used to convert a SAM file to BAM format. Here's an example of how to use SamFormatConverter for this purpose:
+  ```
+  java -jar picard.jar SamFormatConverter \
+  I=input.sam \
+  O=output.bam
+
+  ```
+- **3.3 Sorting BAM file:** The [SortSam](https://gatk.broadinstitute.org/hc/en-us/articles/360037594291-SortSam-Picard-) tool in Picard is used to sort a SAM or BAM file by coordinate order. Sorting is a necessary step for downstream analyses and visualization tools that require data to be ordered by genomic coordinates. Here's an example of how to use SortSam:
+  ```
+  java -jar picard.jar SortSam \
+  I=input.bam \
+  O=sorted_output.bam \
+  SORT_ORDER=coordinate
+
+  ```
 - **3.4 Marking (and optionally deleting) duplicates:**
 
 ### 4. Base Quality score recalibration (not mandatory, but highly recommended) :
