@@ -156,7 +156,7 @@ This step involves applying machine learning to the variant call set to recalibr
 GATK provides recommended hard filtering criteria as an alternative to VQSR. This involves setting specific thresholds for certain variant quality metrics.
 Common filters include read depth (DP), variant allele fraction (AF), strand bias, and mapping quality.
 
-- **6.1 Splitting variants into SNPs and INDELs (optional): ** The variants called during the HaplotypeCaller step can be split into separate vcf files containing SNPs and InDels each, using the [SelectVariants](https://gatk.broadinstitute.org/hc/en-us/articles/360036362532-SelectVariants) command.
+- **6.1 Splitting variants into SNPs and INDELs (optional):** The variants called during the HaplotypeCaller step can be split into separate vcf files containing SNPs and InDels each, using the [SelectVariants](https://gatk.broadinstitute.org/hc/en-us/articles/360036362532-SelectVariants) command.
 ```
 gatk SelectVariants \
        -V unfiltered.vcf \
