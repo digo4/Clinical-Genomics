@@ -45,14 +45,14 @@ Aligning sequencing reads to a reference genome is a crucial step in many bioinf
 #### Indexing the reference genome
 ```
 cd resource
-bwa index Homo_sapiens_assembly38.fasta gatk_demo1_trimmed.fastq.gz gatk_demo2_trimmed.fastq.gz > demo.sam
-
+bwa index Homo_sapiens_assembly38.fasta 
 ```
 Note: Since the Homo spaiens reference genome is very huge in size (3GB), the indexing process can take anywhere between 45min to 2hrs, depending on your system configurations. Alternatively, if you have downloaded all the files in the GATK resource bundle folder, then the respective index files from BWA are already downloaded, and you do not need to index your reference genome again.
 
 #### Alignment to the indexed reference genome
 ```
-bwa mem Homo_sapiens_assembly38.fasta
+bwa mem Homo_sapiens_assembly38.fasta gatk_demo1_trimmed.fastq.gz gatk_demo2_trimmed.fastq.gz > demo.sam
+
 ```
 
 ### 3. Alignment Post-Processing:
