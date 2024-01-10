@@ -127,6 +127,12 @@ gatk ApplyBQSR -I demo_sorted_dedup.bam -R resource/Homo_sapiens_assembly38.fast
 
 ```
 ### 5. Variant Calling:
+Variant calling is a crucial step in clinical genomics analysis, where the goal is to identify genetic variations (variants) such as single nucleotide polymorphisms (SNPs), insertions, deletions, and structural variants in a patient's genome. These variations can be associated with diseases, provide insights into individual susceptibility to certain conditions, and guide treatment decisions.  
+
+The GATK Variant Calling pipeline employs 2 SNV callers : HaplotypeCaller and Mutect2. For this tutorial we will be focussing on HaplotypeCaller for the calling the variants from clinical genomic data.
+```
+
+```
 ### 6. Variant Filtering:
 - **6.1 Splitting variants into SNPs and INDELs:**
 - **6.2 Variant Quality Score Recalibration:**
