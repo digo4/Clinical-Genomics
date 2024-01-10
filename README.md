@@ -60,8 +60,8 @@ After aligning your sequencing reads to a reference genome using BWA, there are 
 - **3.1 Adding one or more read groups to your SAM file:** The [AddOrReplaceReadGroups](https://gatk.broadinstitute.org/hc/en-us/articles/360037226472-AddOrReplaceReadGroups-Picard-) tool in Picard is used to add or replace read group information in a SAM or BAM file. This is important for downstream applications that require proper grouping and identification of reads, especially when dealing with data from multiple sequencing libraries or samples. Even though for this demo data purpose, we have a single sample bam file, still this step is absolutely mandatory for the GATK pipeline! The GATK Pipeline requires at least one ReadGroup id to be specified in the  Here's an example of how to use the AddOrReplaceReadGroups tool:
   ```
   java -jar picard.jar AddOrReplaceReadGroups \
-         I=input.bam \
-         O=output.bam \
+         I=demo.sam \
+         O=demo_rg.sam \
          RGID=ID123 \
          RGLB=library1 \
          RGPL=illumina \
@@ -74,27 +74,51 @@ After aligning your sequencing reads to a reference genome using BWA, there are 
 - **3.2 SAM to BAM conversion:** The [SamFormatConverter](https://gatk.broadinstitute.org/hc/en-us/articles/360037058992-SamFormatConverter-Picard-) tool in Picard can be used to convert a SAM file to BAM format. Here's an example of how to use SamFormatConverter for this purpose:
   ```
   java -jar picard.jar SamFormatConverter \
-         I=input.sam \
-         O=output.bam
+         I=demo_rg.sam\
+         O=demo_rg.bam
 
   ```
 - **3.3 Sorting BAM file:** The [SortSam](https://gatk.broadinstitute.org/hc/en-us/articles/360037594291-SortSam-Picard-) tool in Picard is used to sort a SAM or BAM file by coordinate order. Sorting is a necessary step for downstream analyses and visualization tools that require data to be ordered by genomic coordinates. Here's an example of how to use SortSam:
   ```
   java -jar picard.jar SortSam \
-         I=input.bam \
-         O=sorted_output.bam \
+         I=demo_rg.bam \
+         O=demo_sorted.bam \
          SORT_ORDER=coordinate
 
   ```
 - **3.4 Marking (and optionally deleting) duplicates:** In Picard, the [MarkDuplicates](https://gatk.broadinstitute.org/hc/en-us/articles/360037052812-MarkDuplicates-Picard-) tool is used to identify and mark duplicate reads in a SAM or BAM file. Marking duplicates is a common step in the preprocessing of sequencing data, especially when dealing with PCR-amplified libraries. Here's an example of how to use MarkDuplicates:
   ```
   java -jar picard.jar MarkDuplicates \
-      I=input.bam \
-      O=marked_duplicates.bam \
+      I=demo_sorted.bam \
+      O=demo_sorted_md.bam\
       M=marked_dup_metrics.txt
   ```
-
+In case we want to remove the duplicated reads the command goes as below:
+```
+  java -jar picard.jar MarkDuplicates \
+      I=demo_sorted.bam \
+      O=demo_sorted_dedup.bam\
+      M=marked_dup_metrics.txt
+       --REMOVE_DUPLICATES
+  ```
 ### 4. Base Quality score recalibration (not mandatory, but highly recommended) :
+Base Quality Score Recalibration (BQSR) is primarily used to improve the accuracy of base quality scores assigned to individual nucleotides in the sequencing data.
+In NGS, the quality scores associated with each base in a sequence represent the estimated probability of an incorrect base call. However, these scores are not always perfectly accurate, and recalibration is performed to correct for systematic errors and biases in the sequencing data. The general process of Base Quality Score Recalibration involves the following steps:
+
+- **Collecting Metrics:** The first step involves collecting various metrics from the sequencing data, including the actual base calls, base quality scores, and additional information such as machine cycle, base context, and sequence context.
+
+- **Model Training:** A statistical model is then trained using the collected metrics to estimate the true error probability for each base call. The model takes into account various factors that can influence the accuracy of base calls, such as the quality scores of neighboring bases, machine-specific biases, and sequence context.
+
+- **Recalibration:** Based on the trained model, the base quality scores are recalibrated to reflect a more accurate estimate of the true error probability. This recalibration involves adjusting the original quality scores assigned during the sequencing process.
+
+- **Quality Control:** After recalibration, quality control metrics are often generated to assess the success of the recalibration process. These metrics help ensure that the recalibrated data meets certain quality standards.
+In the GATK pipeline, we can perform BQSR using two commands : [BaseRecalibrator](https://gatk.broadinstitute.org/hc/en-us/articles/360036898312-BaseRecalibrator) and [ApplyBQSR](https://gatk.broadinstitute.org/hc/en-us/articles/360037055712-ApplyBQSR).
+```
+gatk BaseRecalibrator -I demo_sorted_dedup.bam -R resource/Homo_sapiens_assembly38.fasta \
+       --known-sites resource/Homo_sapiens_assembly38.known_indels.vcf.gz \
+       --known-sites resource/Homo_sapiens_assembly38.dbsnp.vcf.gz \
+       -O recal_data.table
+```
 ### 5. Variant Calling:
 ### 6. Variant Filtering:
 - **6.1 Splitting variants into SNPs and INDELs:**
