@@ -171,6 +171,69 @@ gatk SelectVariants \
        -select-type INDEL
 ```
 - **6.2 Variant Quality Score Recalibration:**
+Variant Quality Score Recalibration (VQSR) is a critical step in the Genome Analysis Toolkit (GATK) pipeline for identifying high-confidence variants in high-throughput sequencing data. The purpose of VQSR is to recalibrate the variant quality scores assigned by variant calling algorithms to improve the accuracy of variant calls. The general process involves training a machine learning model using known variant sites and then applying this model to score variants in the dataset.
+Here are the key steps for Variant Quality Score Recalibration in GATK:
+
+- **Generate a Training Set of Variants:**
+
+Create a set of known variant sites that can be used to train the VQSR model. This set can come from a high-quality variant database, such as dbSNP or the 1000 Genomes Project.
+- **VariantRecalibrator:**
+
+Use the [VariantRecalibrator](https://gatk.broadinstitute.org/hc/en-us/articles/360036351392-VariantRecalibrator) tool to train the model. This involves providing the training set of variants, as well as a set of features that describe the variants, such as allele frequency, depth of coverage, mapping quality, and more.
+GATK assigns a Gaussian mixture model to the training data, modeling the distribution of variant quality scores for true variants and non-variants.
+In this example, features like DP (depth of coverage), QD (variant quality by depth), FS (FisherStrand), SOR (StrandOddsRatio), MQ (mapping quality), and various rank sum tests are used.
+- **ApplyRecalibration:**
+
+Apply the learned model to the original variant calls using the [ApplyVQSR](https://gatk.broadinstitute.org/hc/en-us/articles/5358890204187-ApplyVQSR) tool. This assigns new, recalibrated quality scores to each variant.
+
+```
+gatk --java-options "-Xmx4g -Xms4g" VariantRecalibrator \
+	-V hardfilter_PASS.vcf \
+	--trust-all-polymorphic \
+	-tranche 100.0 -tranche 99.95 -tranche 99.9 -tranche 99.5 -tranche 99.0 -tranche 97.0 -tranche 96.0 \
+	-tranche 95.0 -tranche 94.0 -tranche 93.5 -tranche 93.0 -tranche 92.0 -tranche 91.0 -tranche 90.0 \
+	-an FS -an ReadPosRankSum -an MQRankSum -an QD -an SOR -an DP \
+	-mode INDEL \
+	--max-gaussians 4 \
+	-resource:mills,known=false,training=true,truth=true,prior=12 resource/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \
+	-resource:axiomPoly,known=false,training=true,truth=false,prior=10 resource/Axiom_Exome_Plus.genotypes.all_populations.poly.hg38.vcf.gz \
+	-resource:dbsnp,known=true,training=false,truth=false,prior=2 resource/Homo_sapiens_assembly38.dbsnp138.vcf \
+	-O hardfiltered_indel.recal \
+	--tranches-file hardfiltered_indel.tranches
+
+gatk --java-options "-Xmx4g -Xms4g" ApplyVQSR \
+	-V hardfilter_PASS.vcf \
+	--recal-file hardfiltered_indel.recal \
+	--tranches-file hardfiltered_indel.tranches \
+	--truth-sensitivity-filter-level 99.7 \
+	--create-output-variant-index true \
+	-mode INDEL \
+	-O hardfiltered_indel_recal.vcf
+gatk --java-options "-Xmx3g -Xms3g" VariantRecalibrator \
+	-V hardfiltered_indel_recal.vcf \
+	--trust-all-polymorphic \
+	-tranche 100.0 -tranche 99.95 -tranche 99.9 -tranche 99.8 -tranche 99.6 \
+	-tranche 99.5 -tranche 99.4 -tranche 99.3 -tranche 99.0 -tranche 98.0 -tranche 97.0 -tranche 90.0 \
+	-an QD -an MQRankSum -an ReadPosRankSum -an FS -an MQ -an SOR -an DP \
+	-mode SNP \
+	--max-gaussians 6 \
+	-resource:hapmap,known=false,training=true,truth=true,prior=15 resource/hapmap_3.3.hg38.vcf.gz \
+	-resource:omni,known=false,training=true,truth=true,prior=12 resource/1000G_omni2.5.hg38.vcf.gz \
+	-resource:1000G,known=false,training=true,truth=false,prior=10 resource/1000G_phase1.snps.high_confidence.hg38.vcf.gz \
+	-resource:dbsnp,known=true,training=false,truth=false,prior=7 resource/Homo_sapiens_assembly38.dbsnp138.vcf \
+	-O hardfiltered_snp.recal \
+	--tranches-file hardfiltered_snp.tranches \
+	--rscript-file hardfiltered_snp.R
+gatk --java-options "-Xmx4g -Xms4g" ApplyVQSR \
+	-V hardfiltered_indel_recal.vcf \
+	--recal-file hardfiltered_snp.recal \
+	--tranches-file hardfiltered_snp.tranches \
+	--truth-sensitivity-filter-level 99.7 \
+	--create-output-variant-index true \
+	-mode SNP \
+	-O hardfiltered_recalibrated.vcf
+```
+
 - **6.3 Hard Filtering Variants:**
 ### 7. Variant Annotation:
 ### 8. Clinical Interpretation:
