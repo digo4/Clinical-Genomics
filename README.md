@@ -114,14 +114,18 @@ In NGS, the quality scores associated with each base in a sequence represent the
 - **Quality Control:** After recalibration, quality control metrics are often generated to assess the success of the recalibration process. These metrics help ensure that the recalibrated data meets certain quality standards.
 In the GATK pipeline, we can perform BQSR using two commands : [BaseRecalibrator](https://gatk.broadinstitute.org/hc/en-us/articles/360036898312-BaseRecalibrator) and [ApplyBQSR](https://gatk.broadinstitute.org/hc/en-us/articles/360037055712-ApplyBQSR). BaseRecalibrator builds a machine learning model on the basis of known variant sites and generates a recalibration table on the statistical accuracy of sequencer-predicted base quality scores.
 ```
-gatk BaseRecalibrator -I demo_sorted_dedup.bam -R resource/Homo_sapiens_assembly38.fasta \
+gatk BaseRecalibrator \
+       -I demo_sorted_dedup.bam \
+       -R resource/Homo_sapiens_assembly38.fasta \
        --known-sites resource/Homo_sapiens_assembly38.known_indels.vcf.gz \
        --known-sites resource/Homo_sapiens_assembly38.dbsnp.vcf.gz \
        -O recal_data.table
 ```
 ApplyBQSR then applies the recalibration table generated in the previous step to recalibrate the base quality scores of the processed bam file.
 ```
-gatk ApplyBQSR -I demo_sorted_dedup.bam -R resource/Homo_sapiens_assembly38.fasta \
+gatk ApplyBQSR \
+       -I demo_sorted_dedup.bam \
+       -R resource/Homo_sapiens_assembly38.fasta \
        --bqsr-recal-file recal_data.table \
        -O demo_sorted_dedup_recal.bam
 
@@ -131,7 +135,13 @@ Variant calling is a crucial step in clinical genomics analysis, where the goal 
 
 The GATK Variant Calling pipeline employs 2 SNV callers : HaplotypeCaller and Mutect2. For this tutorial we will be focussing on HaplotypeCaller for the calling the variants from clinical genomic data.
 ```
-
+gatk HaplotypeCaller \
+       -I demo_sorted_dedup_recal.bam \
+       -O unfiltered.vcf \
+       -R resource/Homo_sapiens_assembly38.fasta \
+       --dbsnp resource/Homo_sapiens_assembly38.dbsnp.vcf.gz \
+       --annotation AlleleFraction \
+       --annotation VariantType
 ```
 ### 6. Variant Filtering:
 - **6.1 Splitting variants into SNPs and INDELs:**
