@@ -112,12 +112,19 @@ In NGS, the quality scores associated with each base in a sequence represent the
 - **Recalibration:** Based on the trained model, the base quality scores are recalibrated to reflect a more accurate estimate of the true error probability. This recalibration involves adjusting the original quality scores assigned during the sequencing process.
 
 - **Quality Control:** After recalibration, quality control metrics are often generated to assess the success of the recalibration process. These metrics help ensure that the recalibrated data meets certain quality standards.
-In the GATK pipeline, we can perform BQSR using two commands : [BaseRecalibrator](https://gatk.broadinstitute.org/hc/en-us/articles/360036898312-BaseRecalibrator) and [ApplyBQSR](https://gatk.broadinstitute.org/hc/en-us/articles/360037055712-ApplyBQSR).
+In the GATK pipeline, we can perform BQSR using two commands : [BaseRecalibrator](https://gatk.broadinstitute.org/hc/en-us/articles/360036898312-BaseRecalibrator) and [ApplyBQSR](https://gatk.broadinstitute.org/hc/en-us/articles/360037055712-ApplyBQSR). BaseRecalibrator builds a machine learning model on the basis of known variant sites and generates a recalibration table on the statistical accuracy of sequencer-predicted base quality scores.
 ```
 gatk BaseRecalibrator -I demo_sorted_dedup.bam -R resource/Homo_sapiens_assembly38.fasta \
        --known-sites resource/Homo_sapiens_assembly38.known_indels.vcf.gz \
        --known-sites resource/Homo_sapiens_assembly38.dbsnp.vcf.gz \
        -O recal_data.table
+```
+ApplyBQSR then applies the recalibration table generated in the previous step to recalibrate the base quality scores of the processed bam file.
+```
+gatk ApplyBQSR -I demo_sorted_dedup.bam -R resource/Homo_sapiens_assembly38.fasta \
+       --bqsr-recal-file recal_data.table \
+       -O demo_sorted_dedup_recal.bam
+
 ```
 ### 5. Variant Calling:
 ### 6. Variant Filtering:
