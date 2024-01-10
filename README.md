@@ -146,16 +146,30 @@ gatk HaplotypeCaller \
 ### 6. Variant Filtering:
 Variant Filtering is necessary to obtain high confidence variants from the list obtained from the variant calling step. There are two ways to filter variants in the GATK pipeline : 
 (i) Variant Quality Score Recalibration and (ii) Hard-Filtering.
+
 **(i) Variant Quality Score Recalibration (VQSR):**
 
-This step involves applying machine learning to the variant call set to recalibrate variant quality scores based on multiple features such as depth of coverage, mapping quality, and strand bias.A model is trained using known variants and is then applied to the dataset to filter variants based on the recalibrated scores.
+This step involves applying machine learning to the variant call set to recalibrate variant quality scores based on multiple features such as depth of coverage, mapping quality, and strand bias.A model is trained using known variants and is then applied to the dataset to filter variants based on the recalibrated scores. 
 
 **(ii) Hard Filtering:**
 
 GATK provides recommended hard filtering criteria as an alternative to VQSR. This involves setting specific thresholds for certain variant quality metrics.
 Common filters include read depth (DP), variant allele fraction (AF), strand bias, and mapping quality.
 
-- **6.1 Splitting variants into SNPs and INDELs:**
+- **6.1 Splitting variants into SNPs and INDELs: (optional)** The variants called during the HaplotypeCaller step can be split into separate vcf files containing SNPs and InDels each.
+```
+gatk SelectVariants \
+       -V unfiltered.vcf \
+       -R resource/Homo_sapiens_assembly38.fasta \
+       -O unfiltered_snp.vcf \
+       -select-type SNP
+
+gatk SelectVariants \
+       -V unfiltered.vcf \
+       -R resource/Homo_sapiens_assembly38.fasta \
+       -O unfiltered_indel.vcf \
+       -select-type INDEL
+```
 - **6.2 Variant Quality Score Recalibration:**
 - **6.3 Hard Filtering Variants:**
 ### 7. Variant Annotation:
