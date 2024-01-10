@@ -188,7 +188,7 @@ Apply the learned model to the original variant calls using the [ApplyVQSR](http
 
 ```
 gatk --java-options "-Xmx4g -Xms4g" VariantRecalibrator \
-	-V hardfilter_PASS.vcf \
+	-V unfiltered.vcf \
 	--trust-all-polymorphic \
 	-tranche 100.0 -tranche 99.95 -tranche 99.9 -tranche 99.5 -tranche 99.0 -tranche 97.0 -tranche 96.0 \
 	-tranche 95.0 -tranche 94.0 -tranche 93.5 -tranche 93.0 -tranche 92.0 -tranche 91.0 -tranche 90.0 \
@@ -198,19 +198,19 @@ gatk --java-options "-Xmx4g -Xms4g" VariantRecalibrator \
 	-resource:mills,known=false,training=true,truth=true,prior=12 resource/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz \
 	-resource:axiomPoly,known=false,training=true,truth=false,prior=10 resource/Axiom_Exome_Plus.genotypes.all_populations.poly.hg38.vcf.gz \
 	-resource:dbsnp,known=true,training=false,truth=false,prior=2 resource/Homo_sapiens_assembly38.dbsnp138.vcf \
-	-O hardfiltered_indel.recal \
-	--tranches-file hardfiltered_indel.tranches
+	-O unfiltered_indel.recal \
+	--tranches-file unfiltered_indel.tranches
 
 gatk --java-options "-Xmx4g -Xms4g" ApplyVQSR \
 	-V hardfilter_PASS.vcf \
-	--recal-file hardfiltered_indel.recal \
-	--tranches-file hardfiltered_indel.tranches \
+	--recal-file unfiltered_indel.recal \
+	--tranches-file unfiltered_indel.tranches \
 	--truth-sensitivity-filter-level 99.7 \
 	--create-output-variant-index true \
 	-mode INDEL \
-	-O hardfiltered_indel_recal.vcf
+	-O unfiltered_indel_recal.vcf
 gatk --java-options "-Xmx3g -Xms3g" VariantRecalibrator \
-	-V hardfiltered_indel_recal.vcf \
+	-V unfiltered_indel_recal.vcf \
 	--trust-all-polymorphic \
 	-tranche 100.0 -tranche 99.95 -tranche 99.9 -tranche 99.8 -tranche 99.6 \
 	-tranche 99.5 -tranche 99.4 -tranche 99.3 -tranche 99.0 -tranche 98.0 -tranche 97.0 -tranche 90.0 \
@@ -221,17 +221,17 @@ gatk --java-options "-Xmx3g -Xms3g" VariantRecalibrator \
 	-resource:omni,known=false,training=true,truth=true,prior=12 resource/1000G_omni2.5.hg38.vcf.gz \
 	-resource:1000G,known=false,training=true,truth=false,prior=10 resource/1000G_phase1.snps.high_confidence.hg38.vcf.gz \
 	-resource:dbsnp,known=true,training=false,truth=false,prior=7 resource/Homo_sapiens_assembly38.dbsnp138.vcf \
-	-O hardfiltered_snp.recal \
-	--tranches-file hardfiltered_snp.tranches \
-	--rscript-file hardfiltered_snp.R
+	-O unfiltered_snp.recal \
+	--tranches-file unfiltered_snp.tranches \
+	--rscript-file unfiltered_snp.R
 gatk --java-options "-Xmx4g -Xms4g" ApplyVQSR \
-	-V hardfiltered_indel_recal.vcf \
-	--recal-file hardfiltered_snp.recal \
-	--tranches-file hardfiltered_snp.tranches \
+	-V unfiltered_indel_recal.vcf \
+	--recal-file unfiltered_snp.recal \
+	--tranches-file unfiltered_snp.tranches \
 	--truth-sensitivity-filter-level 99.7 \
 	--create-output-variant-index true \
 	-mode SNP \
-	-O hardfiltered_recalibrated.vcf
+	-O unfiltered_recalibrated.vcf
 ```
 
 - **6.3 Hard Filtering Variants:**
