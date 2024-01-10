@@ -133,7 +133,7 @@ gatk ApplyBQSR \
 ### 5. Variant Calling:
 Variant calling is a crucial step in clinical genomics analysis, where the goal is to identify genetic variations (variants) such as single nucleotide polymorphisms (SNPs), insertions, deletions, and structural variants in a patient's genome. These variations can be associated with diseases, provide insights into individual susceptibility to certain conditions, and guide treatment decisions.  
 
-The GATK Variant Calling pipeline employs 2 SNV callers : HaplotypeCaller and Mutect2. For this tutorial we will be focussing on HaplotypeCaller for the calling the variants from clinical genomic data.
+The GATK Variant Calling pipeline employs 2 SNV callers : [HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037225632-HaplotypeCaller) and [Mutect2](https://gatk.broadinstitute.org/hc/en-us/articles/360037593851-Mutect2). HaplotypeCaller is used for germline variant calling, while Mutect2 is specialized for somatic variant calling in cancer samples. For this tutorial we will be focussing on HaplotypeCaller for the calling the variants from clinical genomic data.
 ```
 gatk HaplotypeCaller \
        -I demo_sorted_dedup_recal.bam \
@@ -144,6 +144,17 @@ gatk HaplotypeCaller \
        --annotation VariantType
 ```
 ### 6. Variant Filtering:
+Variant Filtering is necessary to obtain high confidence variants from the list obtained from the variant calling step. There are two ways to filter variants in the GATK pipeline : 
+(i) Variant Quality Score Recalibration and (ii) Hard-Filtering.
+**(i) Variant Quality Score Recalibration (VQSR):**
+
+This step involves applying machine learning to the variant call set to recalibrate variant quality scores based on multiple features such as depth of coverage, mapping quality, and strand bias.A model is trained using known variants and is then applied to the dataset to filter variants based on the recalibrated scores.
+
+**(ii) Hard Filtering:**
+
+GATK provides recommended hard filtering criteria as an alternative to VQSR. This involves setting specific thresholds for certain variant quality metrics.
+Common filters include read depth (DP), variant allele fraction (AF), strand bias, and mapping quality.
+
 - **6.1 Splitting variants into SNPs and INDELs:**
 - **6.2 Variant Quality Score Recalibration:**
 - **6.3 Hard Filtering Variants:**
