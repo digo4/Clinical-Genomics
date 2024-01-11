@@ -10,10 +10,20 @@ Clinical genomics analysis refers to the application of genomic technologies and
 ## Prerequisites:
 Before we begin, please have all the files from the [GATK Resource Bundle](https://console.cloud.google.com/storage/browser/genomics-public-data/resources/broad/hg38/v0;tab=objects?prefix=&forceOnObjectsSortingFiltering=false) and keep all the files downloaded in one folder (let's name the folder resource). We can create a folder using the `mkdir` command.
 
-### Installation of tools:
-
-Tools to be installed include :
--
+### Installation of tools ( follow the manual page of each tool to install them properly):
+- Docker
+- Java (version >= 17)
+- FastQC
+- TrimGalore/ Fastp
+- BWA
+- samtools
+- tabix
+- R
+- python3
+- picard tool
+- snpEff
+- SnpSift
+  
 #### Running GATK on Docker :
 ```
 docker run -v /path/to/demo_data_set:/gatk/data -it broadinstitute/gatk:4.4.0.0
