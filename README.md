@@ -16,7 +16,7 @@ Tools to be installed include :
 -
 #### Running GATK on Docker :
 ```
-docker run -v /home/mediomix/Desktop/Clinical_Genomics_Demo:/gatk/data -it broadinstitute/gatk:4.4.0.0
+docker run -v /path/to/demo_data_set:/gatk/data -it broadinstitute/gatk:4.4.0.0
 ```
 
 
