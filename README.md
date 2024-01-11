@@ -8,11 +8,14 @@
 Clinical genomics analysis refers to the application of genomic technologies and computational methods to understand the genetic basis of diseases and inform clinical decision-making. It involves the analysis of genomic data obtained from patients to identify genetic variations, mutations, and other molecular features that may contribute to disease development or progression. The goal is to use this information to guide diagnosis, treatment decisions, and personalized medicine approaches.
 
 ## Prerequisites:
-Before we begin, please have all the files from the [GATK Resource Bundle](https://console.cloud.google.com/storage/browser/genomics-public-data/resources/broad/hg38/v0;tab=objects?prefix=&forceOnObjectsSortingFiltering=false) and keep all the files downloaded in one folder (let's name the folder resource). We can create a folder using the `mkdir` command.
+Before we begin, please have all the files from the [GATK Resource Bundle](https://console.cloud.google.com/storage/browser/genomics-public-data/resources/broad/hg38/v0;tab=objects?prefix=&forceOnObjectsSortingFiltering=false) and keep all the files downloaded in one folder (let's name the folder resource). We can create a folder using the `mkdir` command. All the tools and analysis steps shown below are for a Linux sytem. For macOS or WSL in Windows, we need to make some minor modifications in the commands.
 
 ### Installation of tools ( follow the manual page of each tool to install them properly):
-- Docker
-- Java (version >= 17)
+- [Docker](https://docs.docker.com/engine/install/ubuntu/)
+- Java (version >= 17) : Picard and GATK only work with Java version >= 17, this is only required in case your docker installation did not work. If you were able to successfully install docker, then you can pull the GATK docker container and you would not require require Java (version >= 17) . Follow this [tutorial](https://www.linuxcapable.com/how-to-install-openjdk-17-on-ubuntu-linux/) for step-by-step guidance :
+```
+# First update 
+```
 - FastQC
 - TrimGalore/ Fastp
 - BWA
