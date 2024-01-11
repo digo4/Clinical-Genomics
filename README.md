@@ -14,9 +14,11 @@ Before we begin, please have all the files from the [GATK Resource Bundle](https
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
 - Java (version >= 17) : Picard and GATK only work with Java version >= 17, this is only required in case your docker installation did not work. If you were able to successfully install docker, then you can pull the GATK docker container and you would not require require Java (version >= 17) . Follow this [tutorial](https://www.linuxcapable.com/how-to-install-openjdk-17-on-ubuntu-linux/) for step-by-step guidance :
 ```
-# First update 
+apt-cache search openjdk | grep openjdk-17
+sudo apt install openjdk-17-jre
+sudo apt install openjdk-17-jdk
 ```
-- FastQC
+- [FastQC](https://github.com/s-andrews/FastQC) (requires Java version >= 11)
 - TrimGalore/ Fastp
 - BWA
 - samtools
