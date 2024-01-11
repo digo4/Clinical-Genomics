@@ -19,15 +19,18 @@ sudo apt install openjdk-17-jre
 sudo apt install openjdk-17-jdk
 ```
 - [FastQC](https://github.com/s-andrews/FastQC) (requires Java version >= 11)
-- TrimGalore/ Fastp
-- BWA
-- samtools
-- tabix
-- R
+- [TrimGalore](https://github.com/FelixKrueger/TrimGalore)/[Fastp](https://github.com/OpenGene/fastp)
+- [BWA](https://github.com/lh3/bwa)
+- [samtools](https://github.com/samtools/samtools)
+- [tabix](https://github.com/samtools/tabix)
+- [R](https://github.com/r-hub/R/releases)
 - python3
-- picard tool
-- snpEff
-- SnpSift
+```
+sudo apt install python3
+sudo apt install python3-pip
+```
+- [picard](https://github.com/broadinstitute/picard)
+- [snpEff/SnpSift](https://pcingola.github.io/SnpEff/)
   
 #### Running GATK on Docker :
 ```
@@ -71,7 +74,7 @@ Aligning sequencing reads to a reference genome is a crucial step in many bioinf
 cd resource
 bwa index Homo_sapiens_assembly38.fasta 
 ```
-Note: Since the Homo spaiens reference genome is very huge in size (3GB), the indexing process can take anywhere between 45min to 2hrs, depending on your system configurations. Alternatively, if you have downloaded all the files in the GATK resource bundle folder, then the respective index files from BWA are already downloaded, and you do not need to index your reference genome again.
+Note: Since the Homo sapiens reference genome is very huge in size (3GB), the indexing process can take anywhere between 45min to 2hrs, depending on your system configurations. Alternatively, if you have downloaded all the files in the GATK resource bundle folder, then the respective index files from BWA are already downloaded, and you do not need to index your reference genome again.
 
 #### Alignment to the indexed reference genome
 ```
