@@ -308,42 +308,42 @@ Researchers may include custom annotations relevant to their specific study, suc
 ### 8. Clinical Interpretation:
 The American College of Medical Genetics and Genomics (ACMG) has established guidelines to standardize the interpretation of genomic variants, particularly for clinical diagnostic purposes. These guidelines provide a framework for assessing the pathogenicity of genetic variants and help clinicians make informed decisions about patient care. The ACMG guidelines were last updated in 2015, and it's advisable to refer to the latest versions or updates for the most current recommendations. Here's an overview of the key principles in the ACMG guidelines:
 
-##### Variant Classification:
+#### Variant Classification:
 
 Variants are classified into five categories based on their pathogenicity:
-**Pathogenic:** A variant that is expected to cause disease.
-**Likely Pathogenic:** A variant that probably causes disease.
-**Uncertain Significance:** The evidence is not sufficient to classify the variant as pathogenic or benign.
-**Likely Benign:** A variant that probably does not cause disease.
-**Benign:** A variant not expected to cause disease.
+- **Pathogenic:** A variant that is expected to cause disease.
+- **Likely Pathogenic:** A variant that probably causes disease.
+- **Uncertain Significance:** The evidence is not sufficient to classify the variant as pathogenic or benign.
+- **Likely Benign:** A variant that probably does not cause disease.
+- **Benign:** A variant not expected to cause disease.
 
-##### Evidence Criteria:
+#### Evidence Criteria:
 
 The ACMG guidelines provide a structured set of criteria to evaluate evidence supporting pathogenicity. These criteria include population data, computational predictions, functional studies, segregation data, and de novo occurrence.
 
-##### Population Databases:
+#### Population Databases:
 
 Population databases, such as gnomAD, are used to assess the frequency of a variant in the general population. Variants with high frequencies are less likely to be pathogenic.
 
-##### Functional Predictions:
+#### Functional Predictions:
 
 Computational tools, like SIFT, PolyPhen-2, and CADD, are used to predict the functional impact of missense variants.
-##### Segregation Data:
+#### Segregation Data:
 
 Information about the presence or absence of the variant in affected and unaffected family members helps assess whether the variant co-segregates with the disease phenotype.
-##### De Novo Occurrence:
+#### De Novo Occurrence:
 
 The occurrence of a variant as a de novo mutation in a patient with no family history of the disorder is considered strong evidence for pathogenicity.
-##### Multiple Lines of Evidence:
+#### Multiple Lines of Evidence:
 
 The guidelines emphasize the importance of considering multiple lines of evidence when classifying variants. No single criterion should be considered definitive.
-##### Applying ACMG Criteria:
+#### Applying ACMG Criteria:
 
 A systematic approach is recommended for applying the ACMG criteria, considering each piece of evidence and reaching an overall classification based on the collective evidence.
-##### Reporting and Communication:
+#### Reporting and Communication:
 
 Clinical laboratories providing genetic testing services are encouraged to report variants according to ACMG standards, clearly indicating the classification, evidence considered, and potential implications for patient management.
-##### Periodic Reassessment:
+#### Periodic Reassessment:
 
 Variants classified as "Uncertain Significance" should be periodically reassessed as new evidence becomes available.
 It's important to note that the interpretation of genomic variants is a dynamic field, and advancements in genomics research may lead to updates in guidelines. The ACMG guidelines provide a valuable framework, but clinical interpretation often requires expertise from a multidisciplinary team, including geneticists, genetic counselors, and clinicians, to consider the specific clinical context and patient information. Additionally, ethical considerations and patient consent are integral aspects of genetic testing and reporting.
